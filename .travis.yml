@@ -10,13 +10,14 @@ cache:
 
 # S: Build Lifecycle
 install:
+  - npm install -g npm
   - npm install
 
 before_script:
-  - npm install -g npm
+
 # 无其他依赖项所以执行npm run build 构建就行了
 script:
-  - npm run build
+  - npm run build:prod
 
 #指定分支，只有指定的分支提交时才会运行脚本
 branches:
