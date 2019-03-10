@@ -66,7 +66,7 @@ export const constantRouterMap = [
     children: [
       {
         path: 'all-activity',
-        component: () => import('@/views/dashboard/index'),
+        component: () => import('@/views/activity/allActivity'),
         name: 'allActivity',
         meta: { title: '所有活动', icon: 'dashboard', noCache: true, affix: true }
       }
