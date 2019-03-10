@@ -10,9 +10,8 @@ for (let i = 0; i < count; i++) {
     id: '@increment',
     timestamp: +Mock.Random.date('T'),
     author: '@first',
-    title: '@title(2, 5)',
-    contentShort: '活动介绍...',
-    content: '活动介绍活动介绍活动介绍活动介绍活动介绍活动介绍...',
+    title: '@title(1, 2)',
+    count: '@integer(0, 500)',
     imgUrl
   }))
 }
