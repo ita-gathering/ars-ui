@@ -67,7 +67,7 @@ export const constantRouterMap = [
       {
         path: 'all-activity',
         component: () => import('@/views/activity/allActivity'),
-        name: 'allActivity',
+        name: 'AllActivity',
         meta: { title: '所有活动', icon: 'dashboard', noCache: true, affix: true }
       }
     ]
@@ -79,7 +79,7 @@ export const constantRouterMap = [
       {
         path: 'index',
         component: () => import('@/views/activity/allActivity'),
-        name: 'Guide',
+        name: 'MyActivity',
         meta: { title: '发起的活动', icon: 'guide', noCache: true }
       }
     ]
@@ -91,8 +91,20 @@ export const constantRouterMap = [
       {
         path: 'index',
         component: () => import('@/views/activity/allActivity'),
-        name: 'Guide',
+        name: 'YourActivity',
         meta: { title: '参与的活动', icon: 'guide', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/activity/:id',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/activity/activityDetailInfo'),
+        name: 'ActivityInfo',
+        meta: { title: '活动详情', icon: 'guide', noCache: true }
       }
     ]
   }

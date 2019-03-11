@@ -1,49 +1,65 @@
 <template>
-  <div>
-    <el-card shadow="hover" style="margin: 10px; width: 250px;" @click.native="showDetailInfo">
-      <p>{{ activityInfo.title }}</p>
-      <img :src="activityInfo.imgUrl" style="width: 100%" class="image">
-      <div v-if="isMyActivity(activityInfo.author)" style="padding: 10px;">
-        <div class="bottom clearfix">
-          {{ activityInfo.amount }} 数据
-        </div>
-        <div style="float: right;margin-bottom: 20px">
-          <el-button type="primary" icon="el-icon-edit" circle/>
-          <el-button type="danger" icon="el-icon-delete" circle/>
-        </div>
-      </div>
-    </el-card>
-    <activity-detail-info
-      :visible.sync="activityDetailInfoVisible"
-      :activity="activityInfo"/>
-  </div>
+  <el-dialog
+    :visible.sync="dialogVisible"
+    :before-close="handleClose"
+    :title="activity.title"
+    top="50px"
+    width="600px">
+    <el-form label-position="top">
+      <el-form-item label="活动介绍">
+        <el-input
+          v-model="activity.content"
+          :rows="10"
+          type="textarea"
+          disabled/>
+      </el-form-item>
+      <el-form-item label="活动日期">
+        <el-date-picker v-model="activity.startDate" disabled/>
+      </el-form-item>
+      <el-form-item label="截止报名日期" >
+        <el-date-picker v-model="activity.closingDate" disabled/>
+      </el-form-item>
+    </el-form>
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="handleClose">取 消</el-button>
+      <el-button type="primary" @click="submitForm">立即报名</el-button>
+    </span>
+  </el-dialog>
 </template>
 
 <script>
-import activityDetailInfo from '@/components/ActivityDetailInfo'
 export default {
   name: 'Index',
-  components: {
-    activityDetailInfo
-  },
   props: {
-    activityInfo: {
+    activity: {
       type: Object,
       default: () => {}
+    },
+    visible: {
+      type: Boolean,
+      default: false
     }
   },
-  data() {
-    return {
-      activityDetailInfoVisible: false
+  computed: {
+    dialogVisible: {
+      get() {
+        return this.visible
+      },
+      set(val) {
+        this.$emit('update:visible', val)
+      }
     }
   },
   methods: {
-    isMyActivity(username) {
-      // todo if username === login username that show button
-      return false
+    submitForm() {
+      this.$message({
+        message: '报名成功',
+        type: 'success'
+      })
+      this.handleClose()
     },
-    showDetailInfo() {
-      this.activityDetailInfoVisible = true
+    handleClose() {
+      this.dialogVisible = false
     }
   }
 }
