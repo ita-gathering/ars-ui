@@ -8,7 +8,7 @@
       <el-form-item label="活动介绍">
         <el-input
           v-model="activity.content"
-          :rows="5"
+          :rows="10"
           type="textarea"
           disabled/>
       </el-form-item>

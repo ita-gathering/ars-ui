@@ -5,7 +5,7 @@
       <img :src="activityInfo.imgUrl" style="width: 100%" class="image">
       <div v-if="isMyActivity(activityInfo.author)" style="padding: 10px;">
         <div class="bottom clearfix">
-          {{ activityInfo.count }} 数据
+          {{ activityInfo.amount }} 数据
         </div>
         <div style="float: right;margin-bottom: 20px">
           <el-button type="primary" icon="el-icon-edit" circle/>
