@@ -78,7 +78,7 @@ export const constantRouterMap = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/guide/index'),
+        component: () => import('@/views/activity/allActivity'),
         name: 'Guide',
         meta: { title: '发起的活动', icon: 'guide', noCache: true }
       }
@@ -90,7 +90,7 @@ export const constantRouterMap = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/guide/index'),
+        component: () => import('@/views/activity/allActivity'),
         name: 'Guide',
         meta: { title: '参与的活动', icon: 'guide', noCache: true }
       }

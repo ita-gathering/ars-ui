@@ -12,6 +12,8 @@ for (let i = 0; i < count; i++) {
     author: '@first',
     title: '@title(1, 2)',
     count: '@integer(0, 500)',
+    startDate: '@datetime',
+    closingDate: '@datetime',
     imgUrl
   }))
 }

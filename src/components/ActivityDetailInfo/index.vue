@@ -2,21 +2,27 @@
   <el-dialog
     :visible.sync="dialogVisible"
     :before-close="handleClose"
+    :title="activity.title"
     width="600px">
-    <el-form>
-      <el-form-item label="活动名称">
-        <el-input v-model="activity.title"/>
-      </el-form-item>
+    <el-form label-position="top">
       <el-form-item label="活动介绍">
-        <el-input v-model="activity.content"/>
+        <el-input
+          v-model="activity.content"
+          :rows="5"
+          type="textarea"
+          disabled/>
       </el-form-item>
-      <el-form-item label="截止报名日期">
-        <el-input v-model="activity.closingDate"/>
+      <el-form-item label="活动日期">
+        <el-date-picker v-model="activity.startDate" disabled/>
       </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm">立即报名</el-button>
+      <el-form-item label="截止报名日期" >
+        <el-date-picker v-model="activity.closingDate" disabled/>
       </el-form-item>
     </el-form>
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="handleClose">取 消</el-button>
+      <el-button type="primary" @click="submitForm">立即报名</el-button>
+    </span>
   </el-dialog>
 </template>
 
@@ -45,6 +51,11 @@ export default {
   },
   methods: {
     submitForm() {
+      this.$message({
+        message: '报名成功',
+        type: 'success'
+      })
+      this.handleClose()
     },
     handleClose() {
       this.dialogVisible = false
