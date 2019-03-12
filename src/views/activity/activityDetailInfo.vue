@@ -88,8 +88,8 @@
       </el-table>
     </el-row>
     <el-row style="margin-top: 10px">
-      <el-button type="danger">清空数据</el-button>
-      <el-button type="primary">新增数据</el-button>
+      <el-button type="danger" @click="clearAllMembers">清空数据</el-button>
+      <el-button type="primary" @click="addNewMember">新增数据</el-button>
     </el-row>
   </div>
 </template>
@@ -109,6 +109,26 @@ export default {
       console.log(res.data)
       this.tableData = res.data
     })
+  },
+  methods: {
+    addNewMember() {},
+    clearAllMembers() {
+      this.$confirm('此操作将永久删除所有报名人员, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$message({
+          type: 'success',
+          message: '删除成功!'
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
+    }
   }
 }
 </script>
