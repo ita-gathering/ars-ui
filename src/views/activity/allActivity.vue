@@ -6,6 +6,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitSearch">查询</el-button>
+        <el-button type="primary" @click="addActivity">添加</el-button>
       </el-form-item>
     </el-form>
     <el-row :gutter="15">
@@ -13,23 +14,32 @@
         <activity-card :activity="activity"/>
       </el-col>
     </el-row>
-
+    <activity-item
+      :visible.sync="activityDetailInfoVisible"
+      :activity="newActivity"
+      :isdisabled="isDisabled"
+    />
   </div>
 </template>
 
 <script>
+import activityItem from '@/components/ActivityItem'
 import activityCard from '@/components/ActivityCard'
 import { fetchAllActivities } from '@/api/activity'
 export default {
   name: 'AllActivity',
   components: {
-    activityCard
+    activityCard,
+    activityItem
   },
   data() {
     return {
       dynSpan: 4,
       searchForm: {},
-      activities: []
+      activities: [],
+      newActivity: {},
+      isDisabled: false,
+      activityDetailInfoVisible: false
     }
   },
   async created() {
@@ -45,6 +55,9 @@ export default {
   methods: {
     submitSearch() {
       console.log('searchForm :', this.searchForm)
+    },
+    addActivity() {
+      this.activityDetailInfoVisible = true
     }
   }
 }
