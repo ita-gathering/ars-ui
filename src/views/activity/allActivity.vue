@@ -10,7 +10,7 @@
     </el-form>
     <el-row :gutter="15">
       <el-col v-for="activity in activities" :key="activity.id" :span="dynSpan">
-        <activity-item :activity-info="activity"/>
+        <activity-card :activity="activity"/>
       </el-col>
     </el-row>
 
@@ -18,12 +18,12 @@
 </template>
 
 <script>
-import activityItem from '@/components/ActivityItem'
+import activityCard from '@/components/ActivityCard'
 import { fetchAllActivities } from '@/api/activity'
 export default {
-  name: 'AllAvtivity',
+  name: 'AllActivity',
   components: {
-    activityItem
+    activityCard
   },
   data() {
     return {

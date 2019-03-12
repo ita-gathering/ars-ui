@@ -1,11 +1,11 @@
 <template>
   <div>
     <el-card shadow="hover" style="margin: 10px; width: 250px;" @click.native="showDetailInfo">
-      <p>{{ activityInfo.title }}</p>
-      <img :src="activityInfo.imgUrl" style="width: 100%" class="image">
-      <div v-if="isMyActivity(activityInfo.author)" style="padding: 10px;">
+      <p>{{ activity.title }}</p>
+      <img :src="activity.imgUrl" style="width: 100%" class="image">
+      <div v-if="isMyActivity(activity.author)" style="padding: 10px;">
         <div class="bottom clearfix">
-          {{ activityInfo.amount }} 数据
+          {{ activity.amount }} 数据
         </div>
         <div style="float: right;margin-bottom: 20px">
           <el-button type="primary" icon="el-icon-edit" circle/>
@@ -13,21 +13,21 @@
         </div>
       </div>
     </el-card>
-    <activity-detail-info
+    <activity-item
       :visible.sync="activityDetailInfoVisible"
-      :activity="activityInfo"/>
+      :activity="activity"/>
   </div>
 </template>
 
 <script>
-import activityDetailInfo from '@/components/ActivityDetailInfo'
+import activityItem from '@/components/ActivityItem'
 export default {
   name: 'Index',
   components: {
-    activityDetailInfo
+    activityItem
   },
   props: {
-    activityInfo: {
+    activity: {
       type: Object,
       default: () => {}
     }
