@@ -17,7 +17,7 @@
     <activity-item
       :visible.sync="activityDetailInfoVisible"
       :activity="newActivity"
-      :isdisabled="isDisabled"
+      operation-type="create"
     />
   </div>
 </template>
@@ -25,7 +25,7 @@
 <script>
 import activityItem from '@/components/ActivityItem'
 import activityCard from '@/components/ActivityCard'
-import { fetchAllActivities } from '@/api/activity'
+import { mapState } from 'vuex'
 export default {
   name: 'AllActivity',
   components: {
@@ -36,18 +36,17 @@ export default {
     return {
       dynSpan: 4,
       searchForm: {},
-      activities: [],
       newActivity: {},
       isDisabled: false,
       activityDetailInfoVisible: false
     }
   },
+  computed: mapState({
+    activities: state => state.activity.activities
+  }),
   async created() {
     this.dynSpan = (document.body.clientWidth / 300)
-    await fetchAllActivities().then(res => {
-      console.log(res)
-      this.activities = res.data
-    })
+    this.$store.dispatch('fetchAllActivities')
   },
   mounted() {
     this.dynSpan = (document.body.clientWidth / 300)

@@ -3,27 +3,33 @@
     :visible.sync="dialogVisible"
     :before-close="handleClose"
     :title="activity.title"
-    top="50px"
+    top="30px"
     width="600px">
     <el-form label-position="top">
+      <el-form-item v-if="isCreate" label="活动名称">
+        <el-input
+          v-model="activity.title"
+          :rows="10"
+          :disabled="couldEdit"/>
+      </el-form-item>
       <el-form-item label="活动介绍">
         <el-input
           v-model="activity.content"
-          :rows="10"
-          :disabled="activityDetailInfoDisable"
+          :rows="8"
+          :disabled="couldEdit"
           type="textarea"/>
       </el-form-item>
       <el-form-item label="活动日期">
-        <el-date-picker v-model="activity.startDate" :disabled="activityDetailInfoDisable"/>
+        <el-date-picker v-model="activity.startDate" :disabled="couldEdit"/>
       </el-form-item>
       <el-form-item label="截止报名日期" >
-        <el-date-picker v-model="activity.closingDate" :disabled="activityDetailInfoDisable"/>
+        <el-date-picker v-model="activity.closingDate" :disabled="couldEdit"/>
       </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="handleClose">取 消</el-button>
-      <el-button v-if="activityDetailInfoDisable" type="primary" @click="submitForm">立即报名</el-button>
-      <el-button v-else type="primary" @click="createActivity">提交</el-button>
+      <el-button v-if="couldEdit" type="primary" @click="submitForm">立即报名</el-button>
+      <el-button v-else type="primary" @click="createActivity">确认</el-button>
     </span>
   </el-dialog>
 </template>
@@ -41,23 +47,24 @@ export default {
       type: Boolean,
       default: false
     },
-    isdisabled: {
-      type: Boolean,
-      default: true
+    operationType: {
+      type: String,
+      default: 'edit'
+    }
+  },
+  data() {
+    return {
+      couldEdit: false
     }
   },
   computed: {
     dialogVisible: {
       get() {
+        this.checkCouldEdit()
         return this.visible
       },
       set(val) {
         this.$emit('update:visible', val)
-      }
-    },
-    activityDetailInfoDisable: {
-      get() {
-        return this.isdisabled
       }
     }
   },
@@ -69,18 +76,37 @@ export default {
       })
       this.handleClose()
     },
-    async createActivity() {
-      await createActivity(this.activity).then(res => {
-        console.log(res)
+    createActivity() {
+      console.log('create new activity :', this.activity)
+      createActivity(this.activity).then(res => {
+        this.$store.dispatch('fetchAllActivities')
+        this.$message({
+          message: this.isCreate() ? '创建活动成功' : '更新活动成果',
+          type: 'success'
+        })
+        this.handleClose()
+      }).catch(error => {
+        this.$message({
+          message: (this.isCreate() ? '创建活动失败' : '更新活动失败') + error,
+          type: 'error'
+        })
       })
-      this.$message({
-        message: '创建活动成功',
-        type: 'success'
-      })
-      this.handleClose()
     },
     handleClose() {
       this.dialogVisible = false
+    },
+    isCreate() {
+      return this.operationType === 'create'
+    },
+    isEdit() {
+      return this.operationType === 'edit'
+    },
+    checkCouldEdit() {
+      if (this.isEdit()) {
+        this.couldEdit = !(this.activity.author === 'admin')
+      } else {
+        this.couldEdit = !(this.isCreate())
+      }
     }
   }
 }

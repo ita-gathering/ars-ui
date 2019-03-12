@@ -15,3 +15,17 @@ export function fetchActivityMembers() {
     method: 'get'
   })
 }
+
+export function createActivity(activity) {
+  return request({
+    url: activityAPI,
+    method: 'post'
+  })
+}
+
+export function deleteActivityById(id) {
+  return request({
+    url: activityAPI + '/' + id,
+    method: 'delete'
+  })
+}

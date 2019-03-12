@@ -1,9 +1,20 @@
 import Mock from 'mockjs'
 
-const List = []
-const TableData = []
-const count = 20
 const imgUrl = 'http://element-cn.eleme.io/static/resource.a72b8f8.png'
+const List = [
+  Mock.mock({
+    id: '0',
+    author: 'admin',
+    title: '活动1',
+    content: '活动内容',
+    amount: '@integer(0, 500)',
+    startDate: '@datetime',
+    closingDate: '@datetime',
+    imgUrl
+  })
+]
+const TableData = []
+const count = 5
 
 for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
@@ -31,5 +42,22 @@ export default {
 
   getTableList: () => {
     return TableData
+  },
+
+  deleteActivityById: (id) => {
+    List.shift()
+  },
+
+  createActivity() {
+    List.push(Mock.mock({
+      id: '@increment',
+      author: 'admin',
+      title: '@title(1, 2)',
+      content: '@paragraph()',
+      amount: '@integer(0, 500)',
+      startDate: '@datetime',
+      closingDate: '@datetime',
+      imgUrl
+    }))
   }
 }
