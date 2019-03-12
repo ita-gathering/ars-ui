@@ -1,8 +1,8 @@
 import Mock from 'mockjs'
 
 const List = []
+const TableData = []
 const count = 20
-
 const imgUrl = 'http://element-cn.eleme.io/static/resource.a72b8f8.png'
 
 for (let i = 0; i < count; i++) {
@@ -16,10 +16,20 @@ for (let i = 0; i < count; i++) {
     closingDate: '@datetime',
     imgUrl
   }))
+  TableData.push(Mock.mock({
+    id: '@increment',
+    name: '@first',
+    date: '@datetime',
+    address: '@city(true)'
+  }))
 }
 
 export default {
   getList: config => {
     return List
+  },
+
+  getTableList: () => {
+    return TableData
   }
 }

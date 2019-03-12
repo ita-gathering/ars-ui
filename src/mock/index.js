@@ -22,5 +22,6 @@ Mock.mock(/\/login\/logout/, 'post', loginAPI.logout)
 Mock.mock(/\/user\/info\.*/, 'get', loginAPI.getUserInfo)
 
 Mock.mock(/\/activity/, 'get', activityAPI.getList)
+Mock.mock(/\/member-data/, 'get', activityAPI.getTableList)
 
 export default Mock

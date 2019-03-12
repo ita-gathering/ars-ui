@@ -8,3 +8,10 @@ export function fetchAllActivities() {
     method: 'get'
   })
 }
+
+export function fetchActivityMembers() {
+  return request({
+    url: '/member-data',
+    method: 'get'
+  })
+}

@@ -71,7 +71,7 @@
       <el-table
         :data="tableData"
         style="width: 100%"
-        max-height="300px"
+        height="400px"
         border
         stripe>
         <el-table-column
@@ -95,29 +95,20 @@
 </template>
 
 <script>
+import { fetchActivityMembers } from '@/api/activity'
 export default {
   name: 'ActivityDetailInfo',
   data() {
     return {
       enable: true,
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }]
+      tableData: []
     }
+  },
+  async created() {
+    await fetchActivityMembers().then(res => {
+      console.log(res.data)
+      this.tableData = res.data
+    })
   }
 }
 </script>
