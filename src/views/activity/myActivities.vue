@@ -46,24 +46,25 @@ export default {
     activities: state => state.activity.activities
   }),
   async created() {
+    console.log('create')
     this.dynSpan = (document.body.clientWidth / 300)
-    this.$store.dispatch('fetchActivitiesByCriteria', '')
+    await this.$store.dispatch('fetchActivitiesByCriteria', '?author=admin')
     // todo temporary bypass permission
-    this.$store.dispatch('GenerateRoutes')
+    await this.$store.dispatch('GenerateRoutes')
   },
   mounted() {
     this.dynSpan = (document.body.clientWidth / 300)
   },
   methods: {
     submitSearch() {
-      this.$store.dispatch('fetchActivitiesByCriteria', '?title=' + this.searchForm.title)
+      this.$store.dispatch('fetchActivitiesByCriteria', '?author=admin&title=' + this.searchForm.title)
     },
     addActivity() {
       this.activityDetailInfoVisible = true
     },
     resetForm() {
       this.searchForm.title = ''
-      this.$store.dispatch('fetchAllActivities')
+      this.$store.dispatch('fetchActivitiesByCriteria', '?author=admin')
     }
   }
 }

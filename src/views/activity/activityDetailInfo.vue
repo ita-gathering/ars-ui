@@ -3,7 +3,7 @@
     <el-row :gutter="12">
       <el-col :span="8">
         <el-card shadow="always">
-          <span style="color: #409EFF">120</span>
+          <span style="color: #409EFF">{{ activity.participants===null?0:activity.participants.length }}</span>
           <span style="float: right">表单总数据<i class="el-icon-question"/></span>
         </el-card>
       </el-col>
@@ -69,22 +69,13 @@
     </el-row>
     <el-row style="margin-top:20px">
       <el-table
-        :data="tableData"
+        :data="activity.participants"
         style="width: 100%"
-        height="400px"
-        border
         stripe>
         <el-table-column
-          prop="date"
-          label="日期"
-          width="180"/>
-        <el-table-column
-          prop="name"
+          prop="userName"
           label="姓名"
           width="180"/>
-        <el-table-column
-          prop="address"
-          label="地址"/>
       </el-table>
     </el-row>
     <el-row style="margin-top: 10px">
@@ -95,25 +86,30 @@
 </template>
 
 <script>
-import { fetchActivityRegisters } from '@/api/activity'
+import { fetchActivityById } from '@/api/activity'
 export default {
   name: 'ActivityDetailInfo',
-  props: {
-    activity: {
-      type: Object,
-      default: () => {}
-    }
-  },
+  // props: {
+  //   activity: {
+  //     type: Object,
+  //     default: () => {}
+  //   }
+  // },
   data() {
     return {
       enable: true,
-      tableData: []
+      activity: {
+        participants: []
+      }
     }
   },
   created() {
-    fetchActivityRegisters().then(res => {
-      this.tableData = res.data
+    const id = this.$router.currentRoute.params.id
+    fetchActivityById(id).then(res => {
+      this.activity = res.data.data
     })
+    // todo temporary bypass permission
+    this.$store.dispatch('GenerateRoutes')
   },
   methods: {
     addNewMember() {},

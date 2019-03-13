@@ -77,9 +77,9 @@ export default {
       this.handleClose()
     },
     createActivity() {
-      this.activity.author = 'admin'
+      this.activity.author = 'vito'
       createActivity(this.activity).then(res => {
-        this.$store.dispatch('fetchAllActivities')
+        this.$store.dispatch('fetchActivitiesByCriteria')
         this.$message({
           message: this.isCreate() ? '创建活动成功' : '更新活动成果',
           type: 'success'

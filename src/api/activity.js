@@ -8,28 +8,26 @@ export function fetchAllActivities() {
     method: 'get'
   })
 }
-
-export function fetchActivitiesByTitle(title) {
-  console.log('api')
+export function fetchMyCraticActivities(username) {
   return request({
-    url: activityAPI + '?title=' + title,
+    url: 'user/' + username + '/activity',
     method: 'get'
   })
 }
 
-export function fetchActivityRegisters(activityId) {
+export function fetchActivitiesByCriteria(queryParam) {
   return request({
-    url: activityAPI + '/register',
+    url: activityAPI + queryParam,
     method: 'get'
   })
 }
 
-// export function createActivity(activity) {
-//   return request({
-//     url: activityAPI,
-//     method: 'post'
-//   })
-// }
+export function fetchActivityById(activityId) {
+  return request({
+    url: activityAPI + '/' + activityId,
+    method: 'get'
+  })
+}
 
 export function updateActivity(activity) {
   return request({

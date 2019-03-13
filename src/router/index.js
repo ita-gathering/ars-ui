@@ -77,8 +77,8 @@ export const constantRouterMap = [
     component: Layout,
     children: [
       {
-        path: 'index',
-        component: () => import('@/views/activity/allActivity'),
+        path: '',
+        component: () => import('@/views/activity/myActivities'),
         name: 'MyActivity',
         meta: { title: '发起的活动', icon: 'guide', noCache: true }
       }
@@ -89,8 +89,8 @@ export const constantRouterMap = [
     component: Layout,
     children: [
       {
-        path: 'index',
-        component: () => import('@/views/activity/allActivity'),
+        path: '',
+        component: () => import('@/views/activity/craticActivities'),
         name: 'YourActivity',
         meta: { title: '参与的活动', icon: 'guide', noCache: true }
       }
@@ -101,7 +101,7 @@ export const constantRouterMap = [
     component: Layout,
     children: [
       {
-        path: 'index',
+        path: '',
         component: () => import('@/views/activity/activityDetailInfo'),
         name: 'ActivityInfo',
         meta: { title: '活动详情', icon: 'guide', noCache: true }
