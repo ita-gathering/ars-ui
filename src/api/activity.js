@@ -47,7 +47,7 @@ export function deleteActivityById(id) {
 
 export function createActivity(data) {
   return request({
-    url: 'http://liangoc-w10:8080/activity',
+    url: activityAPI,
     method: 'post',
     data
   })

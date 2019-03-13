@@ -47,6 +47,8 @@ export default {
   async created() {
     this.dynSpan = (document.body.clientWidth / 300)
     this.$store.dispatch('fetchAllActivities')
+    // todo temporary bypass permission
+    this.$store.dispatch('GenerateRoutes')
   },
   mounted() {
     this.dynSpan = (document.body.clientWidth / 300)

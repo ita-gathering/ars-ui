@@ -77,7 +77,7 @@ export default {
       this.handleClose()
     },
     createActivity() {
-      console.log('create new activity :', this.activity)
+      this.activity.author = 'admin'
       createActivity(this.activity).then(res => {
         this.$store.dispatch('fetchAllActivities')
         this.$message({

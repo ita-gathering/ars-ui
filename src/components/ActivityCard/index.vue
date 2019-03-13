@@ -2,13 +2,13 @@
   <div>
     <el-card shadow="hover" style="margin: 10px; width: 250px; height: 310px">
       <p>{{ activity.title }}</p>
-      <img :src="activity.imgUrl" style="width: 100%" class="image" @click="showDetailInfo">
+      <img src="http://element-cn.eleme.io/static/resource.a72b8f8.png" style="width: 100%" class="image" @click="toDetailPage">
       <div v-if="isMyActivity(activity.author)" style="padding: 10px;">
         <div class="bottom clearfix">
           {{ activity.amount }} 数据
         </div>
         <div style="float: right;margin-bottom: 20px">
-          <el-button type="primary" icon="el-icon-edit" circle @click="showDetailInfo"/>
+          <el-button type="primary" icon="el-icon-edit" circle @click="showEditDialog"/>
           <el-button type="danger" icon="el-icon-delete" circle @click="deleteActivity(activity.id)"/>
         </div>
       </div>
@@ -43,8 +43,12 @@ export default {
     isMyActivity(username) {
       return username === 'admin'
     },
-    showDetailInfo() {
+    showEditDialog() {
       this.activityDetailInfoVisible = true
+    },
+    toDetailPage() {
+      console.log('...')
+      this.$router.push('/activity/:id/index')
     },
     deleteActivity(id) {
       this.$confirm('此操作将永久删除活动和所有报名人员, 是否继续?', '提示', {

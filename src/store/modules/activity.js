@@ -17,14 +17,14 @@ const activity = {
     fetchAllActivities({ commit }) {
       return new Promise(async(resolve, reject) => {
         const res = await fetchAllActivities()
-        commit('SET_ACTIVITIES', res.data)
+        commit('SET_ACTIVITIES', res.data.data)
         resolve()
       })
     },
     fetchActivitiesByTitle({ commit }, title) {
       return new Promise(async(resolve, reject) => {
         const res = await fetchActivitiesByTitle(title)
-        commit('SET_ACTIVITIES', res.data)
+        commit('SET_ACTIVITIES', res.data.data)
         resolve()
       })
     }

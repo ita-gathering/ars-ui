@@ -106,7 +106,8 @@ export const constantRouterMap = [
         name: 'ActivityInfo',
         meta: { title: '活动详情', icon: 'guide', noCache: true }
       }
-    ]
+    ],
+    hidden: true
   }
 ]
 
