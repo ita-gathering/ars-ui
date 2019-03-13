@@ -15,3 +15,11 @@ export function fetchActivityMembers() {
     method: 'get'
   })
 }
+
+export function createActivity(data) {
+  return request({
+    url: 'http://liangoc-w10:8080/activity',
+    method: 'post',
+    data
+  })
+}
