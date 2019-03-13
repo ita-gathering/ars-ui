@@ -1,26 +1,28 @@
 <template>
   <div>
-    <el-card shadow="hover" style="margin: 10px; width: 250px;" @click.native="showDetailInfo">
+    <el-card shadow="hover" style="margin: 10px; width: 250px; height: 310px">
       <p>{{ activity.title }}</p>
-      <img :src="activity.imgUrl" style="width: 100%" class="image">
+      <img :src="activity.imgUrl" style="width: 100%" class="image" @click="showDetailInfo">
       <div v-if="isMyActivity(activity.author)" style="padding: 10px;">
         <div class="bottom clearfix">
           {{ activity.amount }} 数据
         </div>
         <div style="float: right;margin-bottom: 20px">
-          <el-button type="primary" icon="el-icon-edit" circle/>
-          <el-button type="danger" icon="el-icon-delete" circle/>
+          <el-button type="primary" icon="el-icon-edit" circle @click="showDetailInfo"/>
+          <el-button type="danger" icon="el-icon-delete" circle @click="deleteActivity(activity.id)"/>
         </div>
       </div>
     </el-card>
     <activity-item
       :visible.sync="activityDetailInfoVisible"
-      :activity="activity"/>
+      :activity="activity"
+      operation-type="edit"/>
   </div>
 </template>
 
 <script>
 import activityItem from '@/components/ActivityItem'
+import { deleteActivityById } from '@/api/activity'
 export default {
   name: 'Index',
   components: {
@@ -39,11 +41,35 @@ export default {
   },
   methods: {
     isMyActivity(username) {
-      // todo if username === login username that show button
-      return false
+      return username === 'admin'
     },
     showDetailInfo() {
       this.activityDetailInfoVisible = true
+    },
+    deleteActivity(id) {
+      this.$confirm('此操作将永久删除活动和所有报名人员, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        deleteActivityById(id).then(() => {
+          this.$store.dispatch('fetchAllActivities')
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          })
+        }).catch(error => {
+          this.$message({
+            type: 'warning',
+            message: '删除失败!' + error
+          })
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
     }
   }
 }

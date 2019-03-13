@@ -95,18 +95,23 @@
 </template>
 
 <script>
-import { fetchActivityMembers } from '@/api/activity'
+import { fetchActivityRegisters } from '@/api/activity'
 export default {
   name: 'ActivityDetailInfo',
+  props: {
+    activity: {
+      type: Object,
+      default: () => {}
+    }
+  },
   data() {
     return {
       enable: true,
       tableData: []
     }
   },
-  async created() {
-    await fetchActivityMembers().then(res => {
-      console.log(res.data)
+  created() {
+    fetchActivityRegisters().then(res => {
       this.tableData = res.data
     })
   },

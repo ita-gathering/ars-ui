@@ -85,7 +85,7 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/your-activity',
+    path: '/cratic-activity',
     component: Layout,
     children: [
       {

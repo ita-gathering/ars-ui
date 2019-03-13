@@ -9,10 +9,39 @@ export function fetchAllActivities() {
   })
 }
 
-export function fetchActivityMembers() {
+export function fetchActivitiesByTitle(title) {
+  console.log('api')
   return request({
-    url: '/member-data',
+    url: activityAPI + '?title=' + title,
     method: 'get'
+  })
+}
+
+export function fetchActivityRegisters(activityId) {
+  return request({
+    url: activityAPI + '/register',
+    method: 'get'
+  })
+}
+
+// export function createActivity(activity) {
+//   return request({
+//     url: activityAPI,
+//     method: 'post'
+//   })
+// }
+
+export function updateActivity(activity) {
+  return request({
+    url: activityAPI,
+    method: 'put'
+  })
+}
+
+export function deleteActivityById(id) {
+  return request({
+    url: activityAPI + '/' + id,
+    method: 'delete'
   })
 }
 
