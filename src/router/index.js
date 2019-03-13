@@ -91,7 +91,7 @@ export const constantRouterMap = [
       {
         path: '',
         component: () => import('@/views/activity/craticActivities'),
-        name: 'YourActivity',
+        name: 'CraticActivities',
         meta: { title: '参与的活动', icon: 'guide', noCache: true }
       }
     ]

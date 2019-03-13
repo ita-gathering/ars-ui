@@ -78,7 +78,7 @@
           width="180"/>
       </el-table>
     </el-row>
-    <el-row style="margin-top: 10px">
+    <el-row v-if="isMyActivity(activity.author)" style="margin-top: 10px">
       <el-button type="danger" @click="clearAllMembers">清空数据</el-button>
       <el-button type="primary" @click="addNewMember">新增数据</el-button>
     </el-row>
@@ -113,6 +113,9 @@ export default {
   },
   methods: {
     addNewMember() {},
+    isMyActivity(username) {
+      return username === 'admin'
+    },
     clearAllMembers() {
       this.$confirm('此操作将永久删除所有报名人员, 是否继续?', '提示', {
         confirmButtonText: '确定',
