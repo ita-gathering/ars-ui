@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     submitSearch() {
-      console.log('searchForm :', this.searchForm)
+      this.$store.dispatch('fetchActivitiesByTitle', this.searchForm.title)
     },
     addActivity() {
       this.activityDetailInfoVisible = true

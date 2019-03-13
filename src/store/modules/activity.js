@@ -1,4 +1,7 @@
-import { fetchAllActivities } from '@/api/activity'
+import {
+  fetchAllActivities,
+  fetchActivitiesByTitle
+} from '@/api/activity'
 const activity = {
   state: {
     activities: []
@@ -14,6 +17,13 @@ const activity = {
     fetchAllActivities({ commit }) {
       return new Promise(async(resolve, reject) => {
         const res = await fetchAllActivities()
+        commit('SET_ACTIVITIES', res.data)
+        resolve()
+      })
+    },
+    fetchActivitiesByTitle({ commit }, title) {
+      return new Promise(async(resolve, reject) => {
+        const res = await fetchActivitiesByTitle(title)
         commit('SET_ACTIVITIES', res.data)
         resolve()
       })

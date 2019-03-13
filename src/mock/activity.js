@@ -59,5 +59,10 @@ export default {
       closingDate: '@datetime',
       imgUrl
     }))
+  },
+
+  fetchActivitiesByTitle(title) {
+    console.log('mock')
+    return List.filter(item => item.title === title)
   }
 }
