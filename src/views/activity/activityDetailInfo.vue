@@ -2,13 +2,13 @@
   <div style="margin: 20px;">
     <el-row :gutter="12">
       <el-col :span="8">
-        <el-card shadow="always">
+        <el-card shadow="hover">
           <span style="color: #409EFF">{{ activity.participants===null?0:activity.participants.length }}</span>
           <span style="float: right">表单总数据<i class="el-icon-question"/></span>
         </el-card>
       </el-col>
       <el-col :span="8">
-        <el-card shadow="always">
+        <el-card shadow="hover">
           <span style="color: #409EFF">{{ activity.participants===null?0:activity.participants.length }}</span>
           <span style="float: right">今日提交<i class="el-icon-question"/></span>
         </el-card>
@@ -22,7 +22,7 @@
     </el-row>
     <el-row :gutter="12" style="margin-top: 20px">
       <el-col :span="12">
-        <el-card shadow="always">
+        <el-card shadow="hover">
           <p>
             活动创建时间
             <span style="float: right">2019-3-10 19:00</span>
@@ -46,7 +46,7 @@
         </el-card>
       </el-col>
       <el-col :span="12">
-        <el-card shadow="always">
+        <el-card shadow="hover">
           <p>
             活动标签
             <el-tag style="float: right;margin-left: 3px">标签一</el-tag>

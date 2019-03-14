@@ -14,6 +14,13 @@ export function fetchMyCraticActivities(username) {
     method: 'get'
   })
 }
+export function signUpActivity(user, activityId) {
+  return request({
+    url: activityAPI + '/' + activityId,
+    method: 'patch',
+    data: user
+  })
+}
 
 export function fetchActivitiesByCriteria(queryParam) {
   return request({

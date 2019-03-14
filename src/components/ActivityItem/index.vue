@@ -28,14 +28,14 @@
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="handleClose">取 消</el-button>
-      <el-button v-if="couldEdit" type="primary" @click="submitForm">立即报名</el-button>
+      <el-button v-if="couldEdit" type="primary" @click="signUp">立即报名</el-button>
       <el-button v-else type="primary" @click="createActivity">确认</el-button>
     </span>
   </el-dialog>
 </template>
 
 <script>
-import { createActivity } from '@/api/activity'
+import { createActivity, signUpActivity } from '@/api/activity'
 export default {
   name: 'Index',
   props: {
@@ -69,10 +69,20 @@ export default {
     }
   },
   methods: {
-    submitForm() {
-      this.$message({
-        message: '报名成功',
-        type: 'success'
+    signUp() {
+      const user = { 'userName': 'admin' }
+      signUpActivity(user, this.activity.id).then(res => {
+        if (res.data.status === 'successful') {
+          this.$message({
+            message: '报名成功',
+            type: 'success'
+          })
+        } else {
+          this.$message({
+            message: '您不能重复报名',
+            type: 'warning'
+          })
+        }
       })
       this.handleClose()
     },

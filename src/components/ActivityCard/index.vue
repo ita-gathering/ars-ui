@@ -1,23 +1,24 @@
 <template>
   <div>
-    <el-card shadow="hover" style="margin: 10px; width: 250px; height: 310px">
+    <el-card shadow="hover" style="margin: 10px; width: 250px; height: 315px">
       <p>{{ activity.title }}</p>
       <img src="http://element-cn.eleme.io/static/resource.a72b8f8.png" style="width: 100%" class="image" @click="toDetailPage">
       <div v-if="shouldShowAmountAndButton()">
-        <div v-if="isMyActivity(activity.author)" style="padding: 10px;">
+        <div style="padding: 5px;">
           <div class="bottom clearfix">
             {{ activity.participants===null?0:activity.participants.length }} 数据
           </div>
-          <div style="float: right;margin-bottom: 20px">
-            <el-button type="primary" icon="el-icon-edit" circle @click="showEditDialog"/>
-            <el-button type="danger" icon="el-icon-delete" circle @click="deleteActivity(activity.id)"/>
-          </div>
-        </div>
-        <div v-if="!isMyActivity(activity.author)">
-          <div style="float: right;margin-bottom: 20px;margin-top: 28px;margin-right: 10px">
+          <div style="float: right;margin-top: 5px">
             <el-button type="success" icon="el-icon-plus" circle @click="showEditDialog"/>
+            <el-button v-if="isMyActivity(activity.author)" type="primary" icon="el-icon-edit" circle @click="showEditDialog"/>
+            <el-button v-if="isMyActivity(activity.author)" type="danger" icon="el-icon-delete" circle @click="deleteActivity(activity.id)"/>
           </div>
         </div>
+        <!--<div v-if="!isMyActivity(activity.author)">-->
+        <!--<div style="float: right;margin-bottom: 20px;margin-top: 28px;margin-right: 10px">-->
+        <!--<el-button type="success" icon="el-icon-plus" circle @click="showEditDialog"/>-->
+        <!--</div>-->
+        <!--</div>-->
       </div>
     </el-card>
     <activity-item
