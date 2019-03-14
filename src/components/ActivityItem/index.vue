@@ -77,7 +77,7 @@ export default {
       this.handleClose()
     },
     createActivity() {
-      this.activity.author = 'vito'
+      this.activity.author = 'admin'
       createActivity(this.activity).then(res => {
         this.$store.dispatch('fetchActivitiesByCriteria')
         this.$message({

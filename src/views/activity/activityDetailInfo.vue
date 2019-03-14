@@ -9,13 +9,13 @@
       </el-col>
       <el-col :span="8">
         <el-card shadow="always">
-          <span style="color: #409EFF">1</span>
+          <span style="color: #409EFF">{{ activity.participants===null?0:activity.participants.length }}</span>
           <span style="float: right">今日提交<i class="el-icon-question"/></span>
         </el-card>
       </el-col>
       <el-col :span="8">
         <el-card shadow="always">
-          <span style="color: #909399">300</span>
+          <span style="color: #909399">{{ views }}</span>
           <span style="float: right">表单被浏览<i class="el-icon-question"/></span>
         </el-card>
       </el-col>
@@ -86,6 +86,7 @@
 </template>
 
 <script>
+import Mock from 'mockjs'
 import { fetchActivityById } from '@/api/activity'
 export default {
   name: 'ActivityDetailInfo',
@@ -98,6 +99,7 @@ export default {
   data() {
     return {
       enable: true,
+      views: Mock.Random.integer(60, 200),
       activity: {
         participants: []
       }
