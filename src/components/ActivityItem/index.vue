@@ -81,7 +81,7 @@ export default {
       createActivity(this.activity).then(res => {
         this.$store.dispatch('fetchActivitiesByCriteria')
         this.$message({
-          message: this.isCreate() ? '创建活动成功' : '更新活动成果',
+          message: this.isCreate() ? '创建活动成功' : '更新活动成功',
           type: 'success'
         })
         this.handleClose()
