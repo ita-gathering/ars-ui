@@ -10,7 +10,7 @@ export function fetchAllActivities() {
 }
 export function fetchMyCraticActivities(username) {
   return request({
-    url: 'user/' + username + '/activity',
+    url: activityAPI + '?participant=' + username,
     method: 'get'
   })
 }
