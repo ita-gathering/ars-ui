@@ -72,14 +72,16 @@ export default {
     signUp() {
       const user = { 'userName': 'admin' }
       signUpActivity(user, this.activity.id).then(res => {
+        let message = res.data.message
         if (res.data.status === 'successful') {
           this.$message({
-            message: '报名成功',
+            message: '您已成功报名',
             type: 'success'
           })
         } else {
+          if (res.data.message === 'has already participate') { message = '你已报名成功，请不要重复报名' } else if (res.data.message === 'network issue') { message = '网络错误，请稍后再重试' }
           this.$message({
-            message: '您不能重复报名',
+            message: message,
             type: 'warning'
           })
         }
