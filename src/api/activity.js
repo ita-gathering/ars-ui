@@ -60,7 +60,7 @@ export function createActivity(data) {
 
 export function getUserActivityRequests(username) {
   return request({
-    url: activityAPI + '/request?username=' + username,
+    url: activityAPI + '/request?userName=' + username,
     method: 'get'
   })
 }

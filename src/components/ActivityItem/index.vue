@@ -18,14 +18,18 @@
           :rows="8"
           :disabled="couldEdit"
           type="textarea"/>
-      </el-form-item>
-      <el-form-item label="活动日期">
-        <el-date-picker v-model="activity.startDate" :disabled="couldEdit"/>
-      </el-form-item>
-      <el-form-item label="截止报名日期" >
-        <el-date-picker v-model="activity.closingDate" :disabled="couldEdit"/>
-      </el-form-item>
-    </el-form>
+        <el-form-item label="活动人数">
+          <el-input
+            v-model="activity.originCount"
+            :disabled="couldEdit"/>
+        </el-form-item>
+        <el-form-item label="活动日期">
+          <el-date-picker v-model="activity.startDate" :disabled="couldEdit"/>
+        </el-form-item>
+        <el-form-item label="截止报名日期" >
+          <el-date-picker v-model="activity.closingDate" :disabled="couldEdit"/>
+        </el-form-item>
+    </el-form-item></el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="handleClose">取 消</el-button>
       <el-button v-if="couldEdit" type="primary" @click="signUp">立即报名</el-button>
