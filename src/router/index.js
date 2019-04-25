@@ -92,7 +92,19 @@ export const constantRouterMap = [
         path: '',
         component: () => import('@/views/activity/craticActivities'),
         name: 'CraticActivities',
-        meta: { title: '参与的活动', icon: 'guide', noCache: true }
+        meta: { title: '报名成功的活动', icon: 'guide', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/activity-request',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/activity/activityRequests'),
+        name: 'activityRequests',
+        meta: { title: '报名中的活动', icon: 'guide', noCache: true }
       }
     ]
   },
