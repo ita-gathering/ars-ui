@@ -6,7 +6,8 @@
       <div v-if="shouldShowAmountAndButton()">
         <div style="padding: 5px;">
           <div class="bottom clearfix">
-            {{ activity.participants===null?0:activity.participants.length }} 数据
+            已报名:{{ activity.participants===null?0:activity.participants.length }} <br>
+            剩余报名人数: {{ activity.remainCount }}
           </div>
           <div style="float: right;margin-top: 5px">
             <el-button type="success" icon="el-icon-plus" circle @click="showEditDialog"/>
